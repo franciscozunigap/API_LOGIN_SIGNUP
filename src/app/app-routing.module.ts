@@ -7,11 +7,7 @@ import { ProfileComponentsComponent } from './components/profile.components/prof
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component:  AppComponent,
-    pathMatch: "full"
-  },
+  
   {
     path: 'login',
     component:  ContactReactiveComponent,

@@ -9,7 +9,7 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class RegisterComponentsComponent {
   
-    name: string | undefined;
+    email: string | undefined;
     password: string | undefined;
     confirmPassword: string | undefined;
     passwordError: boolean | undefined;
@@ -20,11 +20,14 @@ export class RegisterComponentsComponent {
     ) {}
 
     register() {
-      const user = { name: this.name, password: this.password };
+      const user = { email: this.email, password: this.password };
 
       
       this.userService.register(user).subscribe(data => {
         console.log(data);
+      }, (err)=>{
+        console.log(err);
+
       });
     }
   }

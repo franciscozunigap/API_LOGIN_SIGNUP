@@ -8,6 +8,6 @@ import { ContactReactiveComponent } from '../contact-reactive/contact-reactive.c
   styleUrls: ['./profile.components.component.css']
 })
 export class ProfileComponentsComponent {
-  name: ContactReactiveComponent["name"];
+  name: ContactReactiveComponent["email"];
 
 }

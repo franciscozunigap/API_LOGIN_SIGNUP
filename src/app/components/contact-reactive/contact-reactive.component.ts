@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 })
 
 export class ContactReactiveComponent implements OnInit{
-  name: string | undefined;
+  email: string | undefined;
   password: string | undefined;
 
   contactForm!: FormGroup;
@@ -30,10 +30,16 @@ export class ContactReactiveComponent implements OnInit{
     {}
 
      login() {
-       const user = {name: this.name, password: this.password};
-       this.userService.login(user).subscribe( data => {
-         console.log(data);
-       });
+      
+       const user = {email: this.email, password: this.password};
+       console.log(user);
+       this.userService.login(user).subscribe( 
+        
+        data => {console.log(data);}
+        
+        
+        
+        );
      }
 
 
