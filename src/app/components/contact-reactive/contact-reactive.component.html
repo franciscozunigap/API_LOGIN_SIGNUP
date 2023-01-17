@@ -17,7 +17,7 @@
         <div class= container>
                 
                 <label for="name" class="form-label">User</label>
-                <input  [(ngModel)]="email" id="user" name="user" type="text" class="form-control" required formControlName = "name" >
+                <input  [(ngModel)]="user" id="user" name="user" type="text" class="form-control" required formControlName = "name" >
                 <div *ngIf = "contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']"
                 class="alert alert-danger">Este campo se requerido</div>
         

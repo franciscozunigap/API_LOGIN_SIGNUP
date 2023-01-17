@@ -9,11 +9,11 @@ export class UsersService {
   constructor(private http: HttpClient) {}
 
   login(user: any ): Observable<any> {
-    return this.http.post("https://reqres.in/api/login", user); 
+    return this.http.post("http://localhost:3000/", user); //enviar post con user y password
   }
 
   register(user: any): Observable<any> {
-    return this.http.post("https://reqres.in/api/register", user);
+    return this.http.post("http://localhost:3000/", user);
   }
 
 
