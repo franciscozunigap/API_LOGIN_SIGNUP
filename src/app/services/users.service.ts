@@ -26,6 +26,23 @@ export class UsersService {
 
   }
 
+  view(){
+    return this.http.get("http://localhost:3000/admin")
+
+  }
+
+  update(user: any): Observable<any> {
+    return this.http.post("http://localhost:3000/{{user.id}}", user); //fix update user
+
+
+  }
+
+  delete(user: any): Observable<any> {
+    return this.http.post("http://localhost:3000/{{user.id}}", user); //fix delete user
+
+
+  }
+   
 
 }
 

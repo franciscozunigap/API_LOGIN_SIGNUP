@@ -22,7 +22,7 @@ export class RegisterComponentsComponent {
     ) {}
 
     register() {
-      const user = { user: this.user, password: this.password };
+      const user = { user: this.user, password: this.password, id: null };
 
       
       this.userService.register(user)
@@ -32,10 +32,12 @@ export class RegisterComponentsComponent {
         data => {
 
           if(data.code==301){
+            
             this.router.navigate(['/login']) // va a perfil
 
           }else{ //code == 300
-            console.log("user existente")
+            console.log("este usuario ya existe")
+            
             this.router.navigate(['/login'])
             
             

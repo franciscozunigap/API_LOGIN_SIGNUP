@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ContactReactiveComponent } from './components/contact-reactive/contact-reactive.component';
 import { RegisterComponentsComponent } from './components/register.components/register.components.component';
 import { ProfileComponentsComponent } from './components/profile.components/profile.components.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 
@@ -16,7 +17,8 @@ import { ProfileComponentsComponent } from './components/profile.components/prof
     AppComponent,
     ContactReactiveComponent,
     RegisterComponentsComponent,
-    ProfileComponentsComponent
+    ProfileComponentsComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
