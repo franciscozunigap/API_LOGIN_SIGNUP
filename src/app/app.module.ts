@@ -11,7 +11,6 @@ import { ProfileComponentsComponent } from './components/profile.components/prof
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

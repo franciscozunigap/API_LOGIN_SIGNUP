@@ -2,8 +2,9 @@ import { Component, OnInit} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UsersService } from "../../services/users.service";
-
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -23,23 +24,40 @@ export class ContactReactiveComponent implements OnInit{
 
     public userService: UsersService,
     
-    private http: HttpClient
+    private http: HttpClient,
+
+    private router: Router
     
     
     ) 
     {}
 
      login() {
+
+    
       
        const use = {user: this.user, password: this.password};
+       
        //console.log(user);
-       this.userService.login(use).subscribe( 
+       this.userService.login(use).
+       
+       subscribe( // aqui evalua si entra o no a "/profile"
         
-        data => {console.log(data);}
+        data => {
+
+          if(data.code==200){
+            this.router.navigate(['/profile']) // va a perfil
+
+          }else{
+            console.log("Usuario o contraseña incorrecto")
+            
+
+          }
+
         
-        
-        
-        );
+        }, (err)=>{
+          console.log(err);
+        });
      }
 
 
