@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ContactReactiveComponent } from '../contact-reactive/contact-reactive.component';
-
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-profile.components',
@@ -8,6 +8,16 @@ import { ContactReactiveComponent } from '../contact-reactive/contact-reactive.c
   styleUrls: ['./profile.components.component.css']
 })
 export class ProfileComponentsComponent {
-  name: ContactReactiveComponent["user"];
+  name: any;
+  constructor(
+
+    public userService: UsersService
+
+   
+    ) 
+    {
+
+      this.name= userService.name.user;
+    }
 
 }

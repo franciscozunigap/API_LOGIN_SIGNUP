@@ -38,7 +38,6 @@ export class ContactReactiveComponent implements OnInit{
       
        const use = {user: this.user, password: this.password};
        
-       //console.log(user);
        this.userService.login(use).
        
        subscribe( // aqui evalua si entra o no a "/profile"

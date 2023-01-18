@@ -9,9 +9,11 @@ import { Observable } from 'rxjs';
 
 
 export class UsersService {
+  public name: any;
   constructor(private http: HttpClient) {}
 
   login(user: any ): Observable<any> {
+    this.name= user;
     
     return this.http.post("http://localhost:3000/ingresar", user); //enviar post con user y password
 
