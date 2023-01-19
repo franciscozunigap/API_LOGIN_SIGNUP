@@ -14,6 +14,6 @@ import { FormsModule } from '@angular/forms';
 
 
 export class AppComponent {
-  title = 'mi formulario';
+  title = 'Formulario WEB';
 }
 

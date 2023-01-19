@@ -36,7 +36,9 @@
         <a routerLink="/register" (click)="register()">Crea un usuario</a>
 
         <p></p>
+        <h6>{{incorrect}}</h6>
 
+      
         <div>
           
           <button type="submit" (click)="login()" class="btn btn-primary" [disabled] = "contactForm.invalid">Ingresar</button>

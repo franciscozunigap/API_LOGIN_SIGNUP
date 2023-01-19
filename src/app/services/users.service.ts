@@ -10,6 +10,8 @@ import { Observable } from 'rxjs';
 
 export class UsersService {
   public name: any;
+  public save_item: any;
+
   constructor(private http: HttpClient) {}
 
   login(user: any ): Observable<any> {
@@ -21,28 +23,36 @@ export class UsersService {
   }
 
   register(user: any): Observable<any> {
-    return this.http.post("http://localhost:3000/register", user); //fix create user
+    return this.http.post("http://localhost:3000/register", user); //create user
 
 
   }
 
   view(){
-    return this.http.get("http://localhost:3000/admin")
+    return this.http.get("http://localhost:3000/admin") // lets see users
 
   }
 
-  update(user: any): Observable<any> {
-    return this.http.post("http://localhost:3000/{{user.id}}", user); //fix update user
+  
+
+  update(update: any): Observable<any> {
+    return this.http.post("http://localhost:3000/update-user", update); //update user for id
 
 
   }
 
-  delete(user: any): Observable<any> {
-    return this.http.post("http://localhost:3000/{{user.id}}", user); //fix delete user
+  delete(for_delete: any): Observable<any> {
+    return this.http.post("http://localhost:3000/delete-user", for_delete); //delete user for id
 
 
   }
-   
+
+  saveData(item:any){
+    this.save_item = item;
+
+
+  }
+
 
 }
 

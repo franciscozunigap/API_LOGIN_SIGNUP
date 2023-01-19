@@ -17,6 +17,8 @@ export class ContactReactiveComponent implements OnInit{
   user: string | undefined;
   password: string | undefined;
 
+  incorrect: string | undefined;
+
   contactForm!: FormGroup;
   
   constructor(
@@ -47,10 +49,15 @@ export class ContactReactiveComponent implements OnInit{
           if(data.code==200){
             this.router.navigate(['/profile']) // va a perfil
 
-          }else{
-            console.log("Usuario o contraseña incorrecto")
+          }else if(data.code==202){
+            this.router.navigate(['/admin'])
+            
             
 
+          }else{
+            this.incorrect = "Usuario o contraseña incorrecto"
+           
+            
           }
 
         
@@ -63,7 +70,7 @@ export class ContactReactiveComponent implements OnInit{
   
 
      register() {
-      console.log("Vamos a registarnos");
+      //console.log("Vamos a registarnos");
     }
 
   ngOnInit(): void{

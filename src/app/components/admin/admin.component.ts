@@ -13,7 +13,9 @@ export class AdminComponent implements OnInit {
   user: string | undefined;
   password: string | undefined;
   id: string | undefined;
-
+  refresh: undefined;
+  
+  update:any;
   usuarios: any;
 
   constructor(
@@ -22,23 +24,33 @@ export class AdminComponent implements OnInit {
     private http: HttpClient,
 
     private router: Router,
+    
 
 
-  ){}
+  ){
+  
+    let refresh = document.getElementById('refresh');
+    
+
+  }
+
+ 
+
 
   ngOnInit(): void {
     this.view()
   }
 
+
   view(){
-    console.log("view")
+    //console.log("view")
 
     this.userService.view().  
 
       subscribe(
         data => {
           this.usuarios=data;
-          console.log(this.usuarios)
+          //console.log(this.usuarios)
         }
       )
     
@@ -46,13 +58,43 @@ export class AdminComponent implements OnInit {
 
 
 
+
+      }
+      
+      delete(deleted: any) {
+
+      
+        this.userService.delete(deleted)
+        
+        .subscribe(
+          
+          data => {
+  
+            if(data.code==200){ // actualizado
+             
+              location.reload();
+              //this.router.navigate(['/admin'])
+  
+            }else{ //400  no actualizo
+              console.log("no eliminado")
+      
+            }
+  
+          
+          }, (err)=>{
+          console.log(err);
+  
+        });
+      }
+
+      save_data(use:any){ // guardar id para agrega al body de la solicitud en update
+        this.userService.saveData(use)
+     
+        
+      }
+
+
+
     }
   
-    delete(){
 
-    
-
-    }
-  }
-
-  

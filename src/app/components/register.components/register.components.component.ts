@@ -15,6 +15,8 @@ export class RegisterComponentsComponent {
     confirmPassword: string | undefined;
     passwordError: boolean | undefined;
 
+    existente: string | undefined;
+
   constructor(
     public userService: UsersService,
     private router: Router
@@ -22,7 +24,7 @@ export class RegisterComponentsComponent {
     ) {}
 
     register() {
-      const user = { user: this.user, password: this.password, id: null };
+      const user = { user: this.user, password: this.password};
 
       
       this.userService.register(user)
@@ -32,13 +34,15 @@ export class RegisterComponentsComponent {
         data => {
 
           if(data.code==301){
-            
+
+            console.log("este usuario se creo")
+          
             this.router.navigate(['/login']) // va a perfil
 
           }else{ //code == 300
             console.log("este usuario ya existe")
-            
-            this.router.navigate(['/login'])
+          
+            this.existente = "Este usuario ya existe"
             
             
             

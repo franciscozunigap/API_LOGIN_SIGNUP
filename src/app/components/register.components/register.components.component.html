@@ -15,13 +15,12 @@
         placeholder="Password"
         required="required"
       />
-      <input
-        type="password"
-        [(ngModel)]="confirmPassword"
-        name="password"
-        placeholder="Repeat the password"
-        required="required"
-      />
-      <button routerLink="/login" type="submit" (click)="register()">Register</button>
+      
+      <button  type="submit" (click)="register()">Register</button>
     </form>
+
+    ><div>
+
+      <h6>{{existente}}</h6>
+    </div>
   </div>
