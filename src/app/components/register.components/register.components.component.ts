@@ -12,8 +12,8 @@ export class RegisterComponentsComponent {
   
     user: string | undefined;
     password: string | undefined;
-    confirmPassword: string | undefined;
-    passwordError: boolean | undefined;
+    type: string | undefined;
+    tipo: string | undefined;
 
     existente: string | undefined;
 
@@ -23,9 +23,25 @@ export class RegisterComponentsComponent {
     
     ) {}
 
-    register() {
-      const user = { user: this.user, password: this.password};
+    checkValue(type: any){
 
+   }
+
+   set_type(set: any){
+    if(this.type){
+      this.tipo = "admin"
+
+    }else{
+      this.tipo = "user"
+
+    }
+   }
+    
+    register() {
+      this.set_type(this.type)
+      
+      const user = { user: this.user, password: this.password, type: this.tipo};
+      //console.log(user)
       
       this.userService.register(user)
       
@@ -33,19 +49,19 @@ export class RegisterComponentsComponent {
         
         data => {
 
-          if(data.code==301){
+          if(data.code==301){ // crea user
 
             console.log("este usuario se creo")
           
             this.router.navigate(['/login']) // va a perfil
+            
+            
 
-          }else{ //code == 300
+          }else{
             console.log("este usuario ya existe")
           
             this.existente = "Este usuario ya existe"
-            
-            
-            
+
 
           }
 
@@ -54,5 +70,6 @@ export class RegisterComponentsComponent {
         console.log(err);
 
       });
+      
     }
   }

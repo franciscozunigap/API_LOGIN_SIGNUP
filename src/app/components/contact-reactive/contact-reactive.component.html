@@ -8,6 +8,8 @@
   </head>
 
   <body>
+
+    
     
     
 
@@ -26,12 +28,17 @@
                 <div *ngIf = "contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']"
                 class="alert alert-danger">Este campo se requerido </div>
 
+                
 
                 
 
         </div>
 
         <p></p>
+
+        
+
+        
 
         <a routerLink="/register" (click)="register()">Crea un usuario</a>
 

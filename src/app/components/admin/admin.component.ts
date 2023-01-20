@@ -10,6 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
+  name: string | undefined;
   user: string | undefined;
   password: string | undefined;
   id: string | undefined;
@@ -28,6 +29,7 @@ export class AdminComponent implements OnInit {
 
 
   ){
+    this.name= userService.name.user;
   
     let refresh = document.getElementById('refresh');
     

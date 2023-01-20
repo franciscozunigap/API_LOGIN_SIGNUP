@@ -11,6 +11,10 @@
   
   <form>
     <div class="form-group row">
+    
+    <p> Hola {{react_item.user}}, completa solo lo que desees modificar</p>
+
+    <hr>
       <label for="new_user" class="col-sm-2 col-form-label">User</label>
       <div class="col-sm-10">
         <input [(ngModel)]= "new_user" type="new_user" class="form-control" id="new_user"  name= "new_user" placeholder="New user">
