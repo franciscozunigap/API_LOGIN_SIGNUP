@@ -53,7 +53,7 @@ export class RegisterComponentsComponent {
 
             console.log("este usuario se creo")
           
-            this.router.navigate(['/login']) // va a perfil
+            this.router.navigate(['']) // va a login
             
             
 

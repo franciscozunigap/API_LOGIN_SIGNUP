@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from 'rxjs';
+import { CookieService } from "ngx-cookie-service";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ export class UsersService {
   public name: any;
   public save_item: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookies: CookieService) {}
 
   login(user: any ): Observable<any> {
     this.name= user;
@@ -52,7 +54,5 @@ export class UsersService {
 
 
   }
-
-
 }
 

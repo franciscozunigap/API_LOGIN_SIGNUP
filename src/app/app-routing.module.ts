@@ -7,11 +7,10 @@ import { ProfileComponentsComponent } from './components/profile.components/prof
 import { AdminComponent } from './components/admin/admin.component';
 import { UpdateComponent } from './components/update/update.component';
 
-
 const routes: Routes = [
   
   {
-    path: 'login',
+    path: '',
     component:  ContactReactiveComponent,
     pathMatch: "full"
   },

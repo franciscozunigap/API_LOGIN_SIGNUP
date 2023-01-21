@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from 'src/app/services/users.service';  
 import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
+import { CanActivate } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -10,8 +11,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  name: string | undefined;
-  user: string | undefined;
+  name: any;
+  user: any;
   password: string | undefined;
   id: string | undefined;
   refresh: undefined;
@@ -29,9 +30,10 @@ export class AdminComponent implements OnInit {
 
 
   ){
-    this.name= userService.name.user;
+    //this.name= userService.name.user;
+    this.name = sessionStorage.getItem("user");
   
-    let refresh = document.getElementById('refresh');
+    //let refresh = document.getElementById('refresh');
     
 
   }
@@ -40,7 +42,14 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.view()
+    if(this.name){
+      this.view()
+      
+    }else{
+      console.log("reingrese user")
+    }
+    
+    
   }
 
 
@@ -99,4 +108,4 @@ export class AdminComponent implements OnInit {
 
     }
   
-
+    
