@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 export class ContactReactiveComponent implements OnInit{
   user: any;
   password: string | undefined;
+  id: any;
 
   incorrect: string | undefined;
 
@@ -43,6 +44,7 @@ export class ContactReactiveComponent implements OnInit{
       
 
        sessionStorage.setItem("user", this.user);
+       
        
        this.userService.login(use).
        

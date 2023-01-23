@@ -10,7 +10,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent {
+  name: any
   new_data: any
+  id: any;
   new_user: any
   new_password: any
   react_item: any
@@ -24,6 +26,8 @@ export class UpdateComponent {
 
   ){
     this.react_item = userService.save_item
+    this.name = sessionStorage.getItem("user_access");
+    this.id = sessionStorage.getItem("id");
   }
 
   for_update(id: any, new_user:any, new_password: any) { 

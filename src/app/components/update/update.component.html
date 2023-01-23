@@ -8,30 +8,35 @@
   </head>
   
   
+ 
+  <div class="p-5 text-center bg-light">
+    <form>
+      <div class="form-group row">
+      
+     
+        <h3> Hola {{name}}, completa solo lo que desees modificar</h3>
+
+        <p></p>
+      
+        <label for="new_user" class="col-sm-2 col-form-label">User</label>
   
-  <form>
-    <div class="form-group row">
-    
-    <p> Hola {{react_item.user}}, completa solo lo que desees modificar</p>
-
-    <hr>
-      <label for="new_user" class="col-sm-2 col-form-label">User</label>
-      <div class="col-sm-10">
-        <input [(ngModel)]= "new_user" type="new_user" class="form-control" id="new_user"  name= "new_user" placeholder="New user">
+        <div class="col-sm-10">
+          <input [(ngModel)]= "new_user" type="new_user" class="form-control" id="new_user"  name= "new_user" placeholder="New user">
+        </div>
       </div>
-    </div>
-    <div class="form-group row">
-      <label for="new_password" class="col-sm-2 col-form-label">Password </label>
-      <div class="col-sm-10">
-        <input  [(ngModel)]= "new_password" type="new_password" class="form-control" id="new_password" name= "new_password" placeholder="New password">
+      <div class="form-group row">
+        <label for="new_password" class="col-sm-2 col-form-label">Password </label>
+        <div class="col-sm-10">
+          <input  [(ngModel)]= "new_password" type="new_password" class="form-control" id="new_password" name= "new_password" placeholder="New password">
+        </div>
       </div>
-    </div>
-
-    <hr>
-
-    <div class="col-sm-10">
-        <button (click)="for_update(react_item.id, new_user,new_password)" type="submit" class="btn btn-primary">Aceptar cambio </button>
-    </div>
-    
-    
-  </form>
+  
+      <p></p>
+  
+      <div class="col-sm-10">
+        
+          <button (click)="for_update(id, new_user,new_password)" type="submit"  class="btn btn-primary"> Aceptar cambios </button>
+      </div>
+      
+      
+    </form>  

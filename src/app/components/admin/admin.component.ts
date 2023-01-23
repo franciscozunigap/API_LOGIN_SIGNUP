@@ -99,6 +99,8 @@ export class AdminComponent implements OnInit {
       }
 
       save_data(use:any){ // guardar id para agrega al body de la solicitud en update
+        sessionStorage.setItem("id", use.id);
+        sessionStorage.setItem("user_access", use.user)
         this.userService.saveData(use)
      
         

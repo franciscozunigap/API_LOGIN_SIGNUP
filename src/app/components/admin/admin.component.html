@@ -8,12 +8,16 @@
   </head>
   
 
-  <h6> Bienvenido {{name}}</h6>
+  <h6 class="display-4"> Bienvenido {{name}}</h6>
+
+  <p></p>
+  <p></p>
+  <p></p>
   
   <table  class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">#</th>
+        <th scope="col">Type </th>
         <th scope="col">User</th>
         <th scope="col">Edit</th>
         <th scope="col">Delete</th>
@@ -21,10 +25,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of usuarios; let i=index">
-        <th scope="row">{{i + 1}}</th>
-        <td>({{item.type}}) {{item.user}}</td>
-        <td > <button (click)="save_data(item)" routerLink="/update"> Editar </button> </td>
-        <td> <button routerLink="/admin"(click)="delete(item)" > Eliminar </button> </td>
+        <th scope="row">{{item.type}}</th>
+        <td>{{item.user}}</td>
+        <td > <button class="btn btn-primary" (click)="save_data(item)" routerLink="/admin/update"> Editar </button> </td>
+        <td> <button class="btn btn-dark" routerLink="/admin"(click)="delete(item)" > Eliminar </button> </td>
       </tr>
       
     </tbody>

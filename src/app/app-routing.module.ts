@@ -32,7 +32,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'update',
+    path: 'admin/update',
     component: UpdateComponent,
     pathMatch: 'full'
   }
