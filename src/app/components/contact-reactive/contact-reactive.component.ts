@@ -21,9 +21,15 @@ export class ContactReactiveComponent implements OnInit{
   incorrect: string | undefined;
 
   contactForm!: FormGroup;
+
+  passform!: FormGroup;
+
+  pass_condition: any;
+  public_key: any;
   
   constructor(
     private readonly fb: FormBuilder,
+    private readonly fb2: FormBuilder,
 
     public userService: UsersService,
     
@@ -35,13 +41,57 @@ export class ContactReactiveComponent implements OnInit{
     ) 
     {}
 
+
+
+    sesion(){
+      const use = {user: this.user}
+      this.userService.sesion(use). //comprueba existencia del usuario 
+
+      subscribe( 
+        
+        data => {
+
+          console.log(data)
+
+          if(data.public_key != undefined){
+            this.pass_condition = true
+
+            this.public_key = data.public_key; //guardar public key
+            //console.log(this.public_key)
+
+            
+
+          }else{
+            this.pass_condition = false
+            this.incorrect = "Usuario o contraseña incorrecto"
+           
+            
+          }
+
+        
+        }, (err)=>{
+          console.log(err);
+        });
+     }
+
+
+      
+    
+
+
+
      login() {
 
+
+      
+      // encriptar password ingresada
     
+      
       
        const use = {user: this.user, password: this.password};
 
-      
+
+
 
        sessionStorage.setItem("user", this.user);
        
@@ -51,6 +101,8 @@ export class ContactReactiveComponent implements OnInit{
        subscribe( // aqui evalua si entra o no a "/profile"
         
         data => {
+
+          
 
           if(data.code==200){
             this.router.navigate(['/profile']) // va a perfil
@@ -65,6 +117,8 @@ export class ContactReactiveComponent implements OnInit{
            
             
           }
+
+          // borrar sesión
 
         
         }, (err)=>{
@@ -81,15 +135,25 @@ export class ContactReactiveComponent implements OnInit{
 
   ngOnInit(): void{
     this.contactForm = this.initForm();
+    this.passform = this.initForm_pass();
 
   }
 
   initForm(): FormGroup{
     return this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(3)]]
+      name: ['', [Validators.required, Validators.minLength(3)]]
+    }
+    
+    )
 
     
+    //
+  }
+  initForm_pass(): FormGroup{
+    return this.fb2.group({
+      password: ['', [Validators.required, Validators.minLength(3)]]
+
     })
+
   }
 }

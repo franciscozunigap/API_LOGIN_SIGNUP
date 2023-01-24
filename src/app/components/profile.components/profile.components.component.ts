@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponentsComponent implements OnInit  {
   name: any;
-  ido: any
   user: any
   constructor(
 
@@ -36,5 +35,8 @@ export class ProfileComponentsComponent implements OnInit  {
       
       
     }
+
+    
+  
 
 }

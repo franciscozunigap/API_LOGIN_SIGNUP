@@ -49,10 +49,16 @@ export class UsersService {
 
   }
 
-  saveData(item:any){
-    this.save_item = item;
+  sesion(user: any ): Observable<any> {
+    this.name= user;
+    
+    return this.http.post("http://localhost:3000/usersesion", user); //enviar post con user y password
 
 
   }
+
+
+
+
 }
 
