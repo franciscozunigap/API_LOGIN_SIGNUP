@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersService } from 'src/app/services/users.service';  
+import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+
 import { AppComponent } from 'src/app/app.component';
+import { UsersService } from 'src/app/services/users.service';  
 
 @Component({
   selector: 'app-admin',
@@ -17,7 +16,6 @@ export class AdminComponent implements OnInit {
   password: string | undefined;
   id: string | undefined;
   refresh: undefined;
-  
   update:any;
   usuarios: any;
 
@@ -27,16 +25,14 @@ export class AdminComponent implements OnInit {
     private http: HttpClient,
 
     private router: Router,
+
     private _bar: AppComponent
     
 
 
   ){
-    //this.name= userService.name.user;
-    this.name = sessionStorage.getItem("user");
-  
-    //let refresh = document.getElementById('refresh');
-    
+
+    this.name = sessionStorage.getItem("user");    
 
   }
 
@@ -50,33 +46,28 @@ export class AdminComponent implements OnInit {
       
       
     }else{
-      console.log("reingrese user")
+      console.log("failed")
     }
     
     
   }
 
+  // Vista de usuarios
 
   view(){
-    //console.log("view")
-
+  
     this.userService.view().  
 
       subscribe(
         data => {
           this.usuarios=data;
-          //console.log(this.usuarios)
         }
-      )
-    
-    
-
-
-
-
-      }
+  )}
       
-      delete(deleted: any) {
+  
+  // Borrar usuario
+      
+  delete(deleted: any) {
 
       
         this.userService.delete(deleted)
@@ -88,10 +79,10 @@ export class AdminComponent implements OnInit {
             if(data.code==200){ // actualizado
              
               location.reload();
-              //this.router.navigate(['/admin'])
+    
   
-            }else{ //400  no actualizo
-              console.log("no eliminado")
+            }else{ //no actualizado
+              console.log("no actualizado")
       
             }
   
@@ -100,18 +91,15 @@ export class AdminComponent implements OnInit {
           console.log(err);
   
         });
-      }
+  }
 
-      save_data(use:any){ // guardar id para agrega al body de la solicitud en update
+ // Guardar id 
+
+  save_data(use:any){ 
         sessionStorage.setItem("user_access", use.user)
-        sessionStorage.setItem("id", use.id)
+        sessionStorage.setItem("id", use.id)  
+  }
 
-     
-        
-      }
-
-
-
-    }
+}
   
     

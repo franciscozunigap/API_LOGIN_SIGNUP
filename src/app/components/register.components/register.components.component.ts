@@ -17,12 +17,9 @@ export class RegisterComponentsComponent {
     password: string | undefined;
     type: string | undefined;
     tipo: string | undefined;
-
     user_register_false: any;
-
     userForm!: FormGroup;
     passwordform!: FormGroup;
-
     existente: string | undefined;
     pass_second: any;
     public_key: any;
@@ -32,156 +29,150 @@ export class RegisterComponentsComponent {
     cypherText: any; 
 
 
-
     constructor(
+
     private readonly us: FormBuilder,
     private readonly pss: FormBuilder,
+
     public userService: UsersService,
+
     private router: Router
     
-    ) {
+    ) 
+    {
 
       this.encryptMod = new JsEncryptModule.JSEncrypt()
+
     }
 
-    checkValue(type: any){
-      
 
-   }
-
-   encrypt(key: any, dato: any) {
-	
-    this.encryptMod.setPublicKey(key);
-    this.cypherText = this.encryptMod.encrypt(dato);
-
-
-    return this.cypherText
+  checkValue(type: any){
   
-}
+  }
+
+  // Encripta
+
+  encrypt(key: any, dato: any) {
+
+  this.encryptMod.setPublicKey(key);
+  this.cypherText = this.encryptMod.encrypt(dato);
+
+  return this.cypherText
+
+  }
+
+  // Guarda tipo de usuario
 
 
-   set_type(set: any){
-    if(this.type){
-      this.tipo = "admin"
+  set_type(set: any){
+  if(this.type){
+    this.tipo = "admin"
 
-    }else{
-      this.tipo = "user"
+  }else{
+    this.tipo = "user"
 
-    }
-   }
+  }
+  }
 
+  // Inicia sesion
 
-   sesion(){
-   
-   
+  sesion(){
+  
+  
 
-    this.pass_second = true
-     
+  this.pass_second = true
     
-    const use = {user: this.user}
+  
+  const use = {user: this.user}
 
-    this.userService.sesion_register(use). //comprueba existencia del usuario 
+  this.userService.sesion_register(use). //comprueba existencia del usuario 
 
-    subscribe( 
+  subscribe( 
+    
+    data => {
+
+      if(data.public_key != undefined){
+        this.pass_second = true
+        this.user_register_false = false
+
+        this.public_key = data.public_key; 
+  
+      }else{
+        this.pass_second = false
+        this.existente = "Usuario ya existe"
+        
+      }
+
+    
+    }, (err)=>{
+      console.log(err);
+    });
+    
+
+    
+  }
+
+  // Registra
+  
+  register() {
+    this.set_type(this.type)
+    this.pass_encrypt = this.encrypt(this.public_key, this.password); 
+
+    const user = {user: this.user, password: this.pass_encrypt, type: this.tipo};
+
+    this.userService.register(user)
+    
+    .subscribe(
       
       data => {
 
-        //console.log(data)
+        if(data.code==301){ 
 
-        if(data.public_key != undefined){
-          this.pass_second = true
-          this.user_register_false = false
-
-          this.public_key = data.public_key; //guardar public key
-          //console.log(this.public_key)
-
+          console.log("Created")
+        
+          this.router.navigate(['']) // va a login
+          
           
 
         }else{
-          this.pass_second = false
-          this.existente = "Usuario ya existe"
-         
-          
+        
+          this.existente = "Este usuario ya existe"
+
+
         }
 
       
       }, (err)=>{
-        console.log(err);
-      });
-      
+      console.log(err);
 
-      
-   }
-
+    });
     
-    register() {
-      this.set_type(this.type)
-      this.pass_encrypt = this.encrypt(this.public_key, this.password); 
-
-      const user = {user: this.user, password: this.pass_encrypt, type: this.tipo};
-      //const user = {user: this.user, password: this.password, type: this.tipo};
-      console.log(user)
-
-
-     
-      //console.log(user)
       
-      this.userService.register(user)
-      
-      .subscribe(
-        
-        data => {
-
-          if(data.code==301){ // crea user
-
-            console.log("este usuario se creo")
-          
-            this.router.navigate(['']) // va a login
-            
-            
-
-          }else{
-            console.log("este usuario ya existe")
-          
-            this.existente = "Este usuario ya existe"
-
-
-          }
-
-        
-        }, (err)=>{
-        console.log(err);
-
-      });
-      
-       
-      
-    }
-    ngOnInit(): void{
-      this.user_register_false = true;
-      this.userForm = this.initForm_user();
-      this.passwordform = this.initForm_pass();
-     
-  
-    }
-
-    initForm_user(): FormGroup{
-      return this.us.group({
-        usuario: ['', [Validators.required, Validators.minLength(3)]]
-      })
-
-
-    }
-
-
-    initForm_pass(): FormGroup{
-      return this.pss.group({
-        password: ['', [Validators.required, Validators.minLength(3)]],
-        type: ['']
-      })
-    }
-   
-
-    
     
   }
+
+  ngOnInit(): void{
+    this.user_register_false = true;
+    this.userForm = this.initForm_user();
+    this.passwordform = this.initForm_pass();
+    
+
+  }
+
+  initForm_user(): FormGroup{
+    return this.us.group({
+      usuario: ['', [Validators.required, Validators.minLength(3)]]
+    })
+
+
+  }
+
+
+  initForm_pass(): FormGroup{
+    return this.pss.group({
+      password: ['', [Validators.required, Validators.minLength(3)]],
+      type: ['']
+    })
+  }
+   
+}

@@ -18,9 +18,9 @@ export class AppComponent {
     private router: Router
 
 
-  ){
+  )
+  {}
 
-  }
   title = 'Formulario WEB';
   on_sesion: any
 
@@ -34,8 +34,6 @@ export class AppComponent {
   }
 
 
-  
-  
 }
 
 

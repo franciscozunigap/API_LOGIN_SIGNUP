@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppComponent } from 'src/app/app.component';
-import { ContactReactiveComponent } from '../contact-reactive/contact-reactive.component';
 import { UsersService } from 'src/app/services/users.service';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -21,8 +20,8 @@ export class ProfileComponentsComponent  {
 
     private http: HttpClient,
 
-
     private router: Router,
+
     private _bar: AppComponent
 
 
@@ -35,16 +34,11 @@ export class ProfileComponentsComponent  {
     
     }
 
-    ngOnInit(): void{
+  ngOnInit(): void{
       this._bar.on_sesion = true
      
   
   }
 
-    
-
-
-    
-  
 
 }

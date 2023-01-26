@@ -18,11 +18,9 @@ export class UpdateComponent{
   new_password: any
   react_item: any
   act: any
-
   form=  new FormGroup({
     new_user: new FormControl(),
     new_password: new FormControl()
-
   }) ;
   
   constructor(
@@ -45,8 +43,6 @@ export class UpdateComponent{
   for_update(id: any, new_user:any, new_password: any) { 
     
     this.new_data = {id: id, user: new_user, password: new_password}
-    
-
 
     this.userService.update(this.new_data)
     
@@ -55,13 +51,12 @@ export class UpdateComponent{
       data => {
 
         if(data.code==204){ // actualizado
-          
-          //console.log("actualizado")
+
           this.router.navigate(['/admin'])
 
 
-        }else{ //code == 400 no actualizo
-          //console.log("no actualizado")
+        }else{ 
+          console.log("no actualizado")
   
         }
 
@@ -71,5 +66,6 @@ export class UpdateComponent{
 
     });
   }
+  
 }
 
