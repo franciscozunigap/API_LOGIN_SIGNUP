@@ -57,6 +57,15 @@ export class UsersService {
 
   }
 
+  sesion_register(user: any ): Observable<any> {
+    this.name= user;
+    
+    return this.http.post("http://localhost:3000/usersesion_register", user); //enviar post con user y password
+
+
+  }
+
+
 
 
 

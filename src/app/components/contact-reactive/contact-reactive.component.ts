@@ -4,6 +4,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UsersService } from "../../services/users.service";
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import * as JsEncryptModule from 'jsencrypt';
+import { AppComponent } from 'src/app/app.component';
+import { AppModule } from 'src/app/app.module';
+
+
+
 
 
 
@@ -15,7 +21,7 @@ import { Router } from '@angular/router';
 
 export class ContactReactiveComponent implements OnInit{
   user: any;
-  password: string | undefined;
+  password: any;
   id: any;
 
   incorrect: string | undefined;
@@ -24,8 +30,21 @@ export class ContactReactiveComponent implements OnInit{
 
   passform!: FormGroup;
 
+
+
   pass_condition: any;
   public_key: any;
+
+  pass_encrypt: any;
+
+  encryptMod: any;
+
+	cypherText: any; 
+
+  user_false: any
+
+
+  
   
   constructor(
     private readonly fb: FormBuilder,
@@ -35,26 +54,50 @@ export class ContactReactiveComponent implements OnInit{
     
     private http: HttpClient,
 
-    private router: Router
+    private router: Router,
+
+
+
+
     
     
     ) 
-    {}
+    {
+      this.encryptMod = new JsEncryptModule.JSEncrypt()
+      
+
+    }
+
+
+
+    encrypt(key: any, dato: any) {
+	
+			this.encryptMod.setPublicKey(key);
+			this.cypherText = this.encryptMod.encrypt(dato);
+
+
+      return this.cypherText
+		
+	}
+
+ 
 
 
 
     sesion(){
       const use = {user: this.user}
+
       this.userService.sesion(use). //comprueba existencia del usuario 
 
       subscribe( 
         
         data => {
 
-          console.log(data)
+          //console.log(data)
 
           if(data.public_key != undefined){
             this.pass_condition = true
+            this.user_false = false
 
             this.public_key = data.public_key; //guardar public key
             //console.log(this.public_key)
@@ -85,18 +128,22 @@ export class ContactReactiveComponent implements OnInit{
 
       
       // encriptar password ingresada
+
     
       
+      this.pass_encrypt = this.encrypt(this.public_key, this.password); 
+
+      const use = {user: this.user, password: this.pass_encrypt};
+
+      console.log(use)
+
+
       
-       const use = {user: this.user, password: this.password};
-
-
-
-
-       sessionStorage.setItem("user", this.user);
+      
+      sessionStorage.setItem("user", this.user);
        
        
-       this.userService.login(use).
+      this.userService.login(use).
        
        subscribe( // aqui evalua si entra o no a "/profile"
         
@@ -106,10 +153,11 @@ export class ContactReactiveComponent implements OnInit{
 
           if(data.code==200){
             this.router.navigate(['/profile']) // va a perfil
+          
 
           }else if(data.code==202){
             this.router.navigate(['/admin'])
-            
+             
             
 
           }else{
@@ -124,6 +172,10 @@ export class ContactReactiveComponent implements OnInit{
         }, (err)=>{
           console.log(err);
         });
+
+        
+        
+        
      }
 
 
@@ -134,8 +186,10 @@ export class ContactReactiveComponent implements OnInit{
     }
 
   ngOnInit(): void{
+    this.user_false = true
     this.contactForm = this.initForm();
     this.passform = this.initForm_pass();
+   
 
   }
 
@@ -147,7 +201,7 @@ export class ContactReactiveComponent implements OnInit{
     )
 
     
-    //
+  
   }
   initForm_pass(): FormGroup{
     return this.fb2.group({

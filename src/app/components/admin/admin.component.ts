@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CanActivate } from '@angular/router';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-admin',
@@ -26,6 +27,7 @@ export class AdminComponent implements OnInit {
     private http: HttpClient,
 
     private router: Router,
+    private _bar: AppComponent
     
 
 
@@ -43,7 +45,9 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.name){
+      this._bar.on_sesion = true
       this.view()
+      
       
     }else{
       console.log("reingrese user")

@@ -25,7 +25,7 @@
 
     
 
-      <form  style="width: 43rem;" method="post" [formGroup] = "contactForm"> 
+      <form  style="width: 43rem;" method="post" [formGroup] = "contactForm" *ngIf="user_false"> 
 
       
         <div  class= "form-outline mb-4">
@@ -40,7 +40,7 @@
 
                 <p></p>
 
-                <button type="submit" (click)="sesion()" class="btn btn-primary" [disabled] = "contactForm.invalid">Siguente</button>
+                <button  type="submit" (click)="sesion()" class="btn btn-primary" [disabled] = "contactForm.invalid">Siguente</button>
                 
                 <p></p>
               </div>
